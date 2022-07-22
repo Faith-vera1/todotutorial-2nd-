@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include("./partials/header.ejs") %>
+
+
+<body>
+
+
+  <nav class="nav">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+    <a class="nav-link" href="#">to do</a>
+  
+  </nav>
+
+
+  <div class="container  mt-5">
+
+    <form action="/add/todo" method="POST" class="d-flex">
+        <input type="text" name="todo" class="form-control" placeholder="Enter Todo">
+        <input type="submit" value="Add To do" class="btn btn-md btn-primary">
+    </form>
+
+
+    <ul class="list-group my-5 ">
+      <% todo.forEach(todos => { %>
+      
+          <li class="list-group-item"><%= todos.todo %></li>
+          <a href="/delete/todo/<%= todo._id %>" class="btn btn-danger btn-sm">delete</a>
+      <% }) %>
+      
+      
+    </ul>
+
+  </div>
+
+
+  <%- include("./partials/footer.ejs") %>
+  
+</body>
+</html>
