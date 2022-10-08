@@ -4,13 +4,16 @@ const ejs= require ('ejs');
 const mongoose = require("mongoose");
 
 const Todo = require("./Models/Todo")
+// const postRouter = require('./routes/post')
 
 
 
 
 const app = express();
+app.use(express.urlencoded())
+app.use(express.json())
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 7000
 mongoose.connect(
     `mongodb+srv://Todolist:todolist@happygirl.iawe6ah.mongodb.net/?retryWrites=true&w=majority`,
 
@@ -36,15 +39,17 @@ app.set('view engine',  "ejs")
 
 app.get("/", (req,res) => {
     Todo.find().then( data => {
-        console.log(data);
     res.render("index", {todo:data}) }).catch( err => {
         console.log(err);
     })
-
         
-    })
+})
 
-
+app.post('/todo', (req, res)=>{
+    const {todo} = req.body
+    console.log(todo);
+    res.send('working')
+})
 
 app.listen(port, () => {
     console.log(`Backend server is running ${port}`);

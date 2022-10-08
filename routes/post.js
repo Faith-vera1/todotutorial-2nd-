@@ -5,8 +5,9 @@ const post = require("../models/Todo")
 
 router.post("/add/post", (req ,res) =>{
     const{ post } = req.body;
+    
 
-    console.log(post);
+    
 });
 
 module.exports = router;
